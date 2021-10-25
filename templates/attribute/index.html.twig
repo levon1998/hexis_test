@@ -1,0 +1,40 @@
+{% extends 'layout/base.html.twig' %}
+
+{% block title %}Attributes {% endblock %}
+
+{% block body %}
+    <h1 style="display: flex; justify-content: space-between">
+        Attributes
+        <a href="{{ path('attribute_new') }}"><button type="button" class="btn btn-primary">Create new</button></a>
+    </h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for attribute in attributes %}
+            <tr>
+                <td>{{ attribute.id }}</td>
+                <td>{{ attribute.name }}</td>
+                <td>
+                    <a href="{{ path('attribute_edit', {'id': attribute.id}) }}">
+                        <button type="button" class="btn btn-info btn-sm">
+                            <i class="fas fa-edit"></i>
+                        </button>
+                    </a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

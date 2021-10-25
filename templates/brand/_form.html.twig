@@ -1,0 +1,9 @@
+{{ form_start(form) }}
+
+    <div class="my-custom-class-for-errors">
+        {{ form_errors(form) }}
+    </div>
+
+    {{ form_widget(form, {'attr': {'class': 'from-controll'}}) }}
+    <button class="btn">{{ button_label|default('Save') }}</button>
+{{ form_end(form) }}

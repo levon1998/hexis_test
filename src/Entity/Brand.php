@@ -7,6 +7,7 @@ namespace App\Entity;
 use App\Repository\BrandRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -24,6 +25,7 @@ class Brand
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank
      */
     private ?string $name;
 
@@ -40,7 +42,7 @@ class Brand
     /**
      * @ORM\OneToMany(targetEntity=Vehicle::class, mappedBy="brand", orphanRemoval=true)
      */
-    private ArrayCollection $vehicles;
+    private $vehicles;
 
     /**
      * Construct of Brand class.
