@@ -1,0 +1,9 @@
+{% extends 'layout/base.html.twig' %}
+
+{% block title %}PCreate points of rent {% endblock %}
+
+{% block body %}
+    {{ include('vendor/_form.html.twig') }}
+
+    <a href="{{ path('vendor_index') }}">back to list</a>
+{% endblock %}

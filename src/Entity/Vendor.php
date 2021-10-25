@@ -45,7 +45,7 @@ class Vendor
     /**
      * @ORM\OneToMany(targetEntity=Vehicle::class, mappedBy="vendor")
      */
-    private ArrayCollection $vehicles;
+    private $vehicles;
 
     /**
      * Construct of Vendor class.
