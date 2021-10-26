@@ -77,8 +77,9 @@ class BookingController extends AbstractController
     public function bookNow(Request $request, ValidatorInterface $validator)
     {
         $vehicle = $this->vehicleRepository->find($request->get('vehicleId'));
+        $quantity = $request->get('quantity');
 
-        if ($request->get('quantity') > $vehicle->getQuantity()) {
+        if ($quantity > $vehicle->getQuantity()) {
             return new Response('Now available only '. $vehicle->getQuantity() . 'vehicles.');
         }
 
@@ -86,6 +87,7 @@ class BookingController extends AbstractController
         $booking->setIsActive(true);
         $booking->setStartDate(new \DateTime($request->get('date')));
         $booking->setEndDate(new \DateTime($request->get('date').' +1 day'));
+        $booking->setQuantity($quantity);
         $booking->setVehicle($vehicle);
 
         $errors = $validator->validate($booking);
@@ -98,7 +100,7 @@ class BookingController extends AbstractController
 
         $entityManager = $this->getDoctrine()->getManager();
 
-        $vehicle->setQuantity($vehicle->getQuantity()-$request->get('quantity'));
+        $vehicle->setQuantity($vehicle->getQuantity()-$quantity);
 
         $entityManager->persist($booking);
         $entityManager->persist($vehicle);

@@ -47,4 +47,17 @@ class BookingRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    public function getExpiredBookings() : array
+    {
+        $entityManager = $this->getEntityManager();
+
+        $query = $entityManager->createQuery(
+            'SELECT b
+            FROM App\Entity\Booking b
+            WHERE b.endDate < :now'
+        )->setParameter('now', new \DateTime());
+
+        return $query->getResult();
+    }
 }
