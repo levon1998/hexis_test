@@ -1,0 +1,19 @@
+{% extends 'layout/base.html.twig' %}
+
+{% block title %}Select Vehicle {% endblock %}
+
+{% block body %}
+    <h1 style="display: flex; justify-content: space-between">
+        Select Vehicle
+    </h1>
+
+    <ul class="list-group">
+        {% for vehicle in vendor.getVehicles() %}
+            <li class="list-group-item">
+                <a href="{{ path('book_vehicle', {'vehicle': vehicle.id}) }}">
+                    {{ vehicle.name }} (available {{ vehicle.quantity }})
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

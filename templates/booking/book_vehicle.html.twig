@@ -1,0 +1,25 @@
+{% extends 'layout/base.html.twig' %}
+
+{% block title %}Book Now{% endblock %}
+
+{% block body %}
+    <h1 style="display: flex; justify-content: space-between">
+        Book now
+    </h1>
+
+    <form method="post" action="{{ path('book_now') }}">
+
+        <label for="dateInput">Day when you want to book the {{ vehicle.name }} vehicle</label>
+        <input type="date" name="date" id="dateInput" class="form-control" required>
+        <label for="quantityInput">quantity</label>
+        <input type="number" name="quantity" id="quantityInput" class="form-control" required>
+
+        <input type="hidden" name="vehicleId" value="{{ vehicle.id }}">
+
+        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+        <button class="btn btn-lg btn-primary" type="submit">
+            Book now
+        </button>
+    </form>
+{% endblock %}

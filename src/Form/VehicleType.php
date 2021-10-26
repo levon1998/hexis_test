@@ -19,6 +19,7 @@ class VehicleType extends AbstractType
             ->add('status')
             ->add('brand')
             ->add('vendor')
+            ->add('quantity')
             ->add('attributes', CollectionType::class, [
                 'entry_type' => VehicleAttributeEmbeddedForm::class,
             ])

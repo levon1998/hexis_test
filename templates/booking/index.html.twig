@@ -1,0 +1,19 @@
+{% extends 'layout/base.html.twig' %}
+
+{% block title %}Select Point of rent {% endblock %}
+
+{% block body %}
+    <h1 style="display: flex; justify-content: space-between">
+        Select Point of rent
+    </h1>
+
+    <ul class="list-group">
+        {% for vendor in vendors %}
+            <li class="list-group-item">
+                <a href="{{ path('booking_in_vendor', {'vendor': vendor.id}) }}">
+                    Go to - {{ vendor.name }}
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}
