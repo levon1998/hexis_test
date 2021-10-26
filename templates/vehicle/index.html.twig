@@ -1,0 +1,48 @@
+{% extends 'layout/base.html.twig' %}
+
+{% block title %}Vehicles {% endblock %}
+
+{% block body %}
+    <h1 style="display: flex; justify-content: space-between">
+        Vehicles
+        <a href="{{ path('vehicle_new') }}"><button type="button" class="btn btn-primary">Create new</button></a>
+    </h1>
+
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Brand</th>
+                <th>Point of rent</th>
+                <th>Status</th>
+                <th>CreatedAt</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for vehicle in vehicles %}
+            <tr>
+                <td>{{ vehicle.id }}</td>
+                <td>{{ vehicle.name }}</td>
+                <td>{{ vehicle.brand.name }}</td>
+                <td>{{ vehicle.vendor.name }}</td>
+                <td>{{ vehicle.status ? 'Yes' : 'No' }}</td>
+                <td>{{ vehicle.createdAt ? vehicle.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('vehicle_edit', {'id': vehicle.id}) }}">
+                        <button type="button" class="btn btn-info btn-sm">
+                            <i class="fas fa-edit"></i>
+                        </button>
+                    </a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

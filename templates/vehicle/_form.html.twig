@@ -1,0 +1,18 @@
+{{ form_start(form) }}
+
+    {{ form_row(form.name) }}
+    {{ form_row(form.status) }}
+    {{ form_row(form.brand) }}
+    {{ form_row(form.vendor) }}
+
+    <h3>Attributes</h3>
+    {% for attribute in form.attributes %}
+        <div class="col-xs-4 js-genus-scientist-wrapper">
+            {{ form_errors(attribute) }}
+            {{ form_row(attribute.attribute) }}
+            {{ form_row(attribute.value) }}
+        </div>
+    {% endfor %}
+
+    <button class="btn">{{ button_label|default('Save') }}</button>
+{{ form_end(form) }}

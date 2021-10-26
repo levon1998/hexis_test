@@ -40,9 +40,9 @@ class Vehicle
     private ?Vendor $vendor;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Attribute::class, inversedBy="vehicles")
+     * @ORM\OneToMany (targetEntity=VehicleAttribute::class, mappedBy="vehicle")
      */
-    private ArrayCollection $attribute;
+    private $attributes;
 
     /**
      * @ORM\Column(type="boolean", options={"default" : true})
@@ -59,7 +59,7 @@ class Vehicle
      */
     public function __construct()
     {
-        $this->attribute = new ArrayCollection();
+        $this->attributes = new ArrayCollection();
     }
 
     /**
@@ -133,9 +133,9 @@ class Vehicle
     /**
      * @return Collection|Attribute[]
      */
-    public function getAttribute(): Collection
+    public function getAttributes(): Collection
     {
-        return $this->attribute;
+        return $this->attributes;
     }
 
     /**
@@ -143,10 +143,10 @@ class Vehicle
      *
      * @return $this
      */
-    public function addAttribute(Attribute $attribute): self
+    public function addAttributes(Attribute $attribute): self
     {
-        if (!$this->attribute->contains($attribute)) {
-            $this->attribute[] = $attribute;
+        if (!$this->attributes->contains($attribute)) {
+            $this->attributes[] = $attribute;
         }
 
         return $this;
@@ -157,9 +157,9 @@ class Vehicle
      *
      * @return $this
      */
-    public function removeAttribute(Attribute $attribute): self
+    public function removeAttributes(Attribute $attribute): self
     {
-        $this->attribute->removeElement($attribute);
+        $this->attributes->removeElement($attribute);
 
         return $this;
     }

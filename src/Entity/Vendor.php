@@ -182,4 +182,14 @@ class Vendor
 
         return $this;
     }
+
+    /**
+     * Generates the magic method
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->name;
+    }
 }

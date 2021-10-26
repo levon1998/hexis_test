@@ -30,10 +30,13 @@ class Attribute
     private ?string $name;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Vehicle::class, mappedBy="attribute")
+     * @ORM\OneToMany(targetEntity=VehicleAttribute::class, mappedBy="attribute")
      */
     private $vehicles;
 
+    /**
+     * Constructor of Attribute entity.
+     */
     public function __construct()
     {
         $this->vehicles = new ArrayCollection();
@@ -92,5 +95,15 @@ class Attribute
         }
 
         return $this;
+    }
+
+    /**
+     * Generates the magic method
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->name;
     }
 }

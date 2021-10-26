@@ -55,7 +55,7 @@ class Brand
     /**
      * @return int|null
      */
-    public function getId(): ?int
+    public function getId() : ?int
     {
         return $this->id;
     }
@@ -63,7 +63,7 @@ class Brand
     /**
      * @return string|null
      */
-    public function getName(): ?string
+    public function getName() : ?string
     {
         return $this->name;
     }
@@ -73,7 +73,7 @@ class Brand
      *
      * @return $this
      */
-    public function setName(string $name): self
+    public function setName(string $name) : self
     {
         $this->name = $name;
 
@@ -83,7 +83,7 @@ class Brand
     /**
      * @return bool|null
      */
-    public function getStatus(): ?bool
+    public function getStatus() : ?bool
     {
         return $this->status;
     }
@@ -93,7 +93,7 @@ class Brand
      *
      * @return $this
      */
-    public function setStatus(bool $status): self
+    public function setStatus(bool $status) : self
     {
         $this->status = $status;
 
@@ -103,7 +103,7 @@ class Brand
     /**
      * @return \DateTimeInterface|null
      */
-    public function getCreatedAt(): ?\DateTimeInterface
+    public function getCreatedAt() : ?\DateTimeInterface
     {
         return $this->created_at;
     }
@@ -113,7 +113,7 @@ class Brand
      *
      * @return $this
      */
-    public function setCreatedAt(\DateTimeInterface $created_at): self
+    public function setCreatedAt(\DateTimeInterface $created_at) : self
     {
         $this->created_at = $created_at;
 
@@ -123,7 +123,7 @@ class Brand
     /**
      * @return Collection|Vehicle[]
      */
-    public function getVehicles(): Collection
+    public function getVehicles() : Collection
     {
         return $this->vehicles;
     }
@@ -133,7 +133,7 @@ class Brand
      *
      * @return $this
      */
-    public function addVehicle(Vehicle $vehicle): self
+    public function addVehicle(Vehicle $vehicle) : self
     {
         if (!$this->vehicles->contains($vehicle)) {
             $this->vehicles[] = $vehicle;
@@ -148,7 +148,7 @@ class Brand
      *
      * @return $this
      */
-    public function removeVehicle(Vehicle $vehicle): self
+    public function removeVehicle(Vehicle $vehicle) : self
     {
         if ($this->vehicles->removeElement($vehicle)) {
             // set the owning side to null (unless already changed)
@@ -158,5 +158,15 @@ class Brand
         }
 
         return $this;
+    }
+
+    /**
+     * Generates the magic method
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->name;
     }
 }
